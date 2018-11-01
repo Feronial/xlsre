@@ -14,7 +14,17 @@ class xlsOperator():
     def applyFormulas_Column(self,formula_String, column, applyColumn = False):
         
         
-            
+# =============================================================================
+#          column : Result column (char)
+#          
+#          formula_String : Raw formula (string)
+#          
+#          applyColumn : In next versions method can handle multiple colum formulas (boolean)
+#              
+#           !  ! ! Applies formulas on one column  ! ! !
+# =============================================================================
+         
+         
    
         if applyColumn == True:
             
@@ -25,6 +35,8 @@ class xlsOperator():
             opt_Sign_List = list()
             
             for opt in formula_String:
+                
+                # Separate operant and operator
                 
                 if  str.isalnum(opt) :
                     
@@ -39,6 +51,8 @@ class xlsOperator():
             
             for i in (self.df).index + 2:
                 
+                
+                # Replace spaces to column numbers
                 temp_Formula = formula.replace(' ', str(i)) 
                 self.worksheet.write_formula(column + str(i), temp_Formula)
                 
@@ -54,6 +68,7 @@ class xlsOperator():
     
     def interval_Parser_Border(self, interval):
         
+        # Box selecter for future work
         
         for letter in interval:
             
@@ -69,16 +84,27 @@ class xlsOperator():
         
     def applyVisual_Header(header_Row, interval):
         
+        # Apply simple header design
+        
+        
         pass
     
     def formula_Constructor(self,columns, operator):
         
+# =============================================================================
+#         Generates constructible formula
+#         
+#         Add black spaces after Columns for column nublers
+# =============================================================================
+        
+    
+        
         formula_List = list()
         
-        columns_Temp = columns.copy()
-        operator_Temp = operator.copy()
+        columns_Temp = columns.copy() # For tracing of the list we coied it temporary variable
+        operator_Temp = operator.copy() # list_1 = list_2 assignment doent work, because of the reference copy
         
-        columns_Temp.reverse()
+        columns_Temp.reverse() # Usage of pop method causes to use reverse form of the list
         operator_Temp.reverse()
         
 
